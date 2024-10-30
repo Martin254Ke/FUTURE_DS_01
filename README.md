@@ -24,7 +24,7 @@ How to Use
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/your-username/Titanic-Data-Analysis.git
+git clone https://github.com/martin/Titanic.git
 Install the required libraries:
 bash
 Copy code
