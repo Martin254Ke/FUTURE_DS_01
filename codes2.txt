@@ -1,0 +1,62 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+import numpy as np
+import seaborn as sn
+
+#to avoid enconding error, use 'unicode_escape'
+train=pd.read_csv('train.csv',encoding='unicode_escape')
+
+#read rows and columns
+train.shape
+
+#read all the headers in the data
+train.head()
+
+#information about the data
+train.info
+
+#drop unrelated/ blank colunms i.e Cabin has alot of blank columns
+train.drop('Cabin',axis=1,inplace=True)
+
+#check for null values 
+pd.isnull(train).sum()
+
+#age and embarked has null values/ missing so i drop the null values
+train.dropna(inplace=True)
+
+#i want for countious variables only i. Age & Fare
+train[['Age','Fare']].describe()
+
+##EXPLORATORY DATA ANALYSIS OF TITANIC DATA SET
+#CHECK total GENDER ON BOARD 
+ax = sn.countplot(x='Sex',data=train)
+for bars in ax.containers:
+    ax.bar_label(bars)
+
+#check those that survived based on gender
+SG= sn.countplot(x='Survived',hue='Sex',data=train,palette='winter')
+for bars in SG.containers:
+    SG.bar_label(bars)
+
+#check those that Survived based on the passager class on board
+PS = sn.countplot(x='Survived',hue='Pclass',data=train,palette='rainbow')
+for bars in PS.containers:
+    PS.bar_label(bars)
+
+#check those who had sibling or spouse on the titanic board based on gender
+SS= sn.countplot(x='SibSp',hue='Sex',data=train,palette='winter')
+for bars in SS.containers:
+    SS.bar_label(bars)
+
+
+
+
+
+
+
+
+
+
+
+
